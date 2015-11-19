@@ -2,6 +2,7 @@ import urllib2, google, bs4, re
 from flask import Flask, render_template, request
 from itertools import chain
 from nltk.corpus import stopwords
+from operator import itemgetter
 app = Flask(__name__)
 
 @app.route("/",methods=["GET","POST"])
@@ -28,7 +29,7 @@ def whoSearch(query):
         except Exception:
             stopList[x] = stopList[x]
         x = x+1
-        
+    print stopList
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:
@@ -67,7 +68,17 @@ def whoSearch(query):
     for part in particles:
         partDict[part] = partDict[part] + 1
     print partDict
-    possibleNames = sorted(list(set(result)), key=len)[::-1]
+    
+    #possibleNames = sorted(list(set(result)), key=len)[::-1]
+    nameSet = set(result)
+    nameDict = {}
+    for name in nameSet:
+        nameDict[name] = 0
+    for name in result:
+        nameDict[name] = nameDict[name] + 1
+    
+    possibleNames = sorted(nameDict.iteritems(), key=itemgetter(1), reverse=True)
+    
     counter = 0
     current = ""
     for key in partDict.keys():

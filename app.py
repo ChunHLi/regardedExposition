@@ -21,9 +21,7 @@ def home():
     rawString = ""
     for x in rlist:
         url = urllib2.urlopen(rlist[0])
-        page = url.read()
-        soup = bs4.BeautifulSoup(page,'lxml')
-        raw = soup.get_text()
+        raw = url.read()
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.appned(text)
         rawString = rawString + text + " "

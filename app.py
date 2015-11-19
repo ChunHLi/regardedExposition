@@ -42,8 +42,12 @@ def home():
     for part in particles:
         partDict[part] = partDict[part] + 1
     possibleNames = sorted(result, key=len)
-    temp = partDict.values().sort()
-    mainPart = partDict.keys()[temp[-1]]
+    counter = 0
+    current = ""
+    for key in partDict.keys():
+        if partDict[key] > counter:
+            counter = partDict[key]
+            current = key
     found = False
     Result = ""
     for name in possibleNames:

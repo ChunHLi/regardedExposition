@@ -50,7 +50,7 @@ def whoSearch(query):
     x = 0
     while x < len(result):
         z = ""
-        for y in x:
+        for y in result[x]:
             z = z + y
         result[x] = z
         x = x+1

@@ -9,8 +9,8 @@ def home():
     query = "Who is the lead singer of radiohead?"
     if request.method == "POST":
         query = request.form["query"]
-    for space in [' ']:
-        query = query.replace(space, "%20")
+    #for space in [' ']:
+    #    query = query.replace(space, "%20")
     
     N = 10
     results = google.search(query,num=N,start=0,stop=N)

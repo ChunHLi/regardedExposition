@@ -31,7 +31,7 @@ def home():
     particles = []
     subPattern = "([A-Z]+[a-z]+[\.]?)"
     for sub in result:
-        subParts = findall(subPattern,sub)
+        subParts = re.findall(subPattern,sub)
         particles = particles + subParts
     partSet = set(particles)
     partDict = {}

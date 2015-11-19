@@ -19,7 +19,7 @@ def home():
 
 def whoSearch(query):
     N = 10
-    stopList = stopwords.words('english')
+    stopList =  unicode(stopwords.words('english'),'utf-8')
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:

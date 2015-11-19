@@ -53,6 +53,7 @@ def whoSearch(query):
         for y in x:
             z = z + y
         result[x] = z
+        x = x+1
     
     particles = []
     subPattern = "[A-Z]+[a-z]+[\.]?"

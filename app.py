@@ -45,7 +45,8 @@ def whoSearch(query):
         rawString.replace(StopWord," ")
     whoPattern = "([A-Z]+[a-z]+[\.]?[ ])?[A-Z]+[a-z]+[ ][A-Z]+[a-z]+[ ]"
     result = re.findall(whoPattern,rawString)
-    result = list(chain.from_iterable(result))
+    print result
+    #result = list(chain.from_iterable(result))
     particles = []
     subPattern = "[A-Z]+[a-z]+[\.]?"
     for sub in result:
@@ -57,6 +58,7 @@ def whoSearch(query):
         partDict[part] = 0
     for part in particles:
         partDict[part] = partDict[part] + 1
+    print partDict
     possibleNames = sorted(list(set(result)), key=len)[::-1]
     counter = 0
     current = ""

@@ -1,5 +1,6 @@
 import urllib2, google, bs4, re
 from flask import Flask, render_template, request
+from itertools import chain
 app = Flask(__name__)
 
 @app.route("/",methods=["GET","POST"])
@@ -28,6 +29,7 @@ def home():
     
     whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
     result = re.findall(whoPattern,rawString)
+    result = list(chain.from_iterable(result))
     particles = []
     subPattern = "([A-Z]+[a-z]+[\.]?)"
     for sub in result:

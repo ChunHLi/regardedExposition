@@ -23,6 +23,7 @@ def whoSearch(query):
     x = 0
     while x < len(stopList):
         stopList[x] = unicode(stopList[x],'utf-8',errors="ignore")
+        x = x+1
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:

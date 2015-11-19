@@ -28,7 +28,7 @@ def home():
         rawlist.appned(text)
         rawString = rawString + text
     
-    whoPattern = "([A-Z]+[a-z]*[\.]?)? ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
+    whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
     result = findall(pattern,rawString)
     particles = []
     subPattern = "([A-Z]+[a-z]+[\.]?)"

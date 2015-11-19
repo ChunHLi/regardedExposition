@@ -43,10 +43,10 @@ def whoSearch(query):
         rawString = rawString + text + " "
     for StopWord in stopList:
         rawString.replace(StopWord," ")
-    whoPattern = "([A-Z]+[a-z]+[\.]?[ ])?[A-Z]+[a-z]+[ ][A-Z]+[a-z]+[ ]"
+    whoPattern = "([A-Z]+[a-z]+[\.]?[ ])?([A-Z]+[a-z]+[ ])([A-Z]+[a-z]+[ ])"
     result = re.findall(whoPattern,rawString)
     print result
-    #result = list(chain.from_iterable(result))
+    result = list(chain.from_iterable(result))
     particles = []
     subPattern = "[A-Z]+[a-z]+[\.]?"
     for sub in result:

@@ -47,11 +47,12 @@ def whoSearch(query):
     result = re.findall(whoPattern,rawString)
     print result
     #result = list(chain.from_iterable(result))
-    for x in result:
+    x = 0
+    while x < len(result):
         z = ""
         for y in x:
             z = z + y
-        x = z
+        result[x] = z
     
     particles = []
     subPattern = "[A-Z]+[a-z]+[\.]?"

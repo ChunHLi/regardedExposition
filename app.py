@@ -1,6 +1,7 @@
 import urllib2, google, bs4, re
 from flask import Flask, render_template, request
 from itertools import chain
+from nltk.corpus import stopwords
 app = Flask(__name__)
 
 @app.route("/",methods=["GET","POST"])
@@ -18,6 +19,7 @@ def home():
 
 def whoSearch(query):
     N = 10
+    stopList = stopwords.words('english')
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:
@@ -30,7 +32,8 @@ def whoSearch(query):
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.append(text)
         rawString = rawString + text + " "
-    
+    for StopWord in stopList:
+        rawString.replace(StopWord," ")
     whoPattern = "[A-Z]+[a-z]+[ ][A-Z]+[a-z]+"
     result = re.findall(whoPattern,rawString)
     result = list(chain.from_iterable(result))

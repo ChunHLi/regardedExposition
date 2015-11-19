@@ -27,7 +27,7 @@ def home():
         rawString = rawString + text + " "
     
     whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
-    result = findall(pattern,rawString)
+    result = re.findall(pattern,rawString)
     particles = []
     subPattern = "([A-Z]+[a-z]+[\.]?)"
     for sub in result:

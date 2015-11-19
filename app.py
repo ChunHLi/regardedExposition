@@ -23,7 +23,7 @@ def home():
         url = urllib2.urlopen(rlist[0])
         raw = url.read()
         text = re.sub("[ \t\n]+"," ",raw)
-        rawlist.appned(text)
+        rawlist.append(text)
         rawString = rawString + text + " "
     
     whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"

@@ -49,6 +49,7 @@ def home():
         if not found and mainPart in name:
             found = True
             Result = name
+    print Result
     
 
     return render_template("home.html")

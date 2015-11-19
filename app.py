@@ -51,6 +51,7 @@ def home():
     mainPart = current
     found = False
     Result = ""
+    print possibleNames
     for name in possibleNames:
         if not found and mainPart in name:
             found = True

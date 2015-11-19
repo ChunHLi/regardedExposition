@@ -41,7 +41,7 @@ def home():
         partDict[part] = 0
     for part in particles:
         partDict[part] = partDict[part] + 1
-    possibleNames = sorted(result, key=len)
+    possibleNames = sorted(result, key=len)[::-1]
     counter = 0
     current = ""
     for key in partDict.keys():

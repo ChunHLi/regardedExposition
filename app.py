@@ -26,7 +26,7 @@ def home():
         raw = soup.get_text()
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.appned(text)
-        rawString = rawString + text
+        rawString = rawString + text + " "
     
     whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
     result = findall(pattern,rawString)
@@ -41,6 +41,14 @@ def home():
         partDict[part] = 0
     for part in particles:
         partDict[part] = partDict[part] + 1
+    possibleNames = sorted(result, key=len)
+    mainPart = partDict.keys()[partDict.values().sort()[-1]]
+    found = False
+    Result = ""
+    for name in possibleNames:
+        if not found and mainPart in name:
+            found = True
+            Result = name
     
 
     return render_template("home.html")

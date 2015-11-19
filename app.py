@@ -10,9 +10,13 @@ def home():
     query = "Who is the lead singer of radiohead?"
     if request.method == "POST":
         query = request.form["query"]
-    #for space in [' ']:
-    #    query = query.replace(space, "%20")
-    
+    if re.findall("(who)",query.lower()):
+        WhoFinal = whoSearch(query)
+        return render_template("home.html", result = WhoFinal)
+        
+    return render_template("home.html")
+
+def whoSearch(query):
     N = 10
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
@@ -27,7 +31,7 @@ def home():
         rawlist.append(text)
         rawString = rawString + text + " "
     
-    whoPattern = "([A-Z]+[a-z]+[\.]?) ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
+    whoPattern = "([A-Z]+[a-z]+[\.]?)?([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)"
     result = re.findall(whoPattern,rawString)
     result = list(chain.from_iterable(result))
     particles = []
@@ -41,7 +45,7 @@ def home():
         partDict[part] = 0
     for part in particles:
         partDict[part] = partDict[part] + 1
-    possibleNames = sorted(result, key=len)[::-1]
+    possibleNames = sorted(list(set(result)), key=len)[::-1]
     counter = 0
     current = ""
     for key in partDict.keys():
@@ -56,10 +60,7 @@ def home():
         if not found and mainPart in name:
             found = True
             Result = name
-    print Result
-    
-
-    return render_template("home.html")
+    return Result
 
 if __name__ == "__main__":
    app.debug = True

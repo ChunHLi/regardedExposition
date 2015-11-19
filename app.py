@@ -43,7 +43,7 @@ def whoSearch(query):
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.append(text)
         rawString = rawString + text + " "
-        
+    rawString = ' '.join([word for word in rawString.split() if word not in stopList])
     
     whoPattern = "([A-Z]+[a-z]+[\.][ ])?([A-Z]+[a-z]+[ ])([A-Z]+[a-z]+[ ])"
     result = re.findall(whoPattern,rawString)
@@ -93,7 +93,7 @@ def whoSearch(query):
     for name in possibleNames:
         if not found and mainPart in name[0]:
             found = True
-            Result = name
+            Result = name[0]
     return Result
 
 if __name__ == "__main__":

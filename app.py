@@ -29,6 +29,7 @@ def whoSearch(query):
         except Exception:
             stopList[x] = stopList[x]
         x = x+1
+    stopList = stopwords.words("english")
     print stopList
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
@@ -42,8 +43,8 @@ def whoSearch(query):
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.append(text)
         rawString = rawString + text + " "
-    for StopWord in stopList:
-        rawString.replace(StopWord," ")
+        
+    
     whoPattern = "([A-Z]+[a-z]+[\.][ ])?([A-Z]+[a-z]+[ ])([A-Z]+[a-z]+[ ])"
     result = re.findall(whoPattern,rawString)
     print result
@@ -90,7 +91,7 @@ def whoSearch(query):
     Result = ""
     print possibleNames
     for name in possibleNames:
-        if not found and mainPart in name:
+        if not found and mainPart in name[0]:
             found = True
             Result = name
     return Result

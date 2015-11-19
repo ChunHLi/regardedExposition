@@ -31,11 +31,11 @@ def whoSearch(query):
         rawlist.append(text)
         rawString = rawString + text + " "
     
-    whoPattern = "([A-Z]+[a-z]+[\.]?)?([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)"
+    whoPattern = "[A-Z]+[a-z]+[ ][A-Z]+[a-z]+"
     result = re.findall(whoPattern,rawString)
     result = list(chain.from_iterable(result))
     particles = []
-    subPattern = "([A-Z]+[a-z]+[\.]?)"
+    subPattern = "[A-Z]+[a-z]+[\.]?"
     for sub in result:
         subParts = re.findall(subPattern,sub)
         particles = particles + subParts

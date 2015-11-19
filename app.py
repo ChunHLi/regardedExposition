@@ -48,6 +48,7 @@ def home():
         if partDict[key] > counter:
             counter = partDict[key]
             current = key
+    mainPart = current
     found = False
     Result = ""
     for name in possibleNames:

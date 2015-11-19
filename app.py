@@ -16,15 +16,32 @@ def home():
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:
-    rlist.append(r)
-
-    url = urllib2.urlopen(rlist[0])
-    page = url.read()
-    soup = bs4.BeautifulSoup(page,'lxml')
-    raw = soup.get_text()
-
-    text = re.sub("[ \t\n]+"," ",raw)
-    print text
+        rlist.append(r)
+    rawlist = []
+    rawString = ""
+    for x in rlist:
+        url = urllib2.urlopen(rlist[0])
+        page = url.read()
+        soup = bs4.BeautifulSoup(page,'lxml')
+        raw = soup.get_text()
+        text = re.sub("[ \t\n]+"," ",raw)
+        rawlist.appned(text)
+        rawString = rawString + text
+    
+    whoPattern = "([A-Z]+[a-z]*[\.]?)? ([A-Z]+[a-z]+[ ]?)([A-Z]+[a-z]+[ ]?)?"
+    result = findall(pattern,rawString)
+    particles = []
+    subPattern = "([A-Z]+[a-z]+[\.]?)"
+    for sub in result:
+        subParts = findall(subPattern,sub)
+        particles = particles + subParts
+    partSet = set(particles)
+    partDict = {}
+    for part in partSet:
+        partDict[part] = 0
+    for part in particles:
+        partDict[part] = partDict[part] + 1
+    
 
     return render_template("home.html")
 

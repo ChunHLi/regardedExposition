@@ -43,7 +43,7 @@ def home():
         partDict[part] = partDict[part] + 1
     possibleNames = sorted(result, key=len)
     temp = partDict.values().sort()
-    mainPart = partDict.keys()[x[-1]]
+    mainPart = partDict.keys()[temp[-1]]
     found = False
     Result = ""
     for name in possibleNames:

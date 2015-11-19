@@ -23,7 +23,10 @@ def whoSearch(query):
     x = 0
     
     while x < len(stopList):
-        stopList[x] = unicode(stopList[x],errors="ignore")
+        try:
+            stopList[x] = stopList[x].encode("ascii","ignore")
+        except Exception:
+            stopList[x] = stopList[x]
         x = x+1
         
     results = google.search(query,num=N,start=0,stop=N)

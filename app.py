@@ -47,7 +47,6 @@ def whoSearch(query):
     
     whoPattern = "([A-Z]+[a-z]+[\.][ ])?([A-Z]+[a-z]+[ ])([A-Z]+[a-z]+[ ])"
     result = re.findall(whoPattern,rawString)
-    print result
     #result = list(chain.from_iterable(result))
     x = 0
     while x < len(result):
@@ -68,7 +67,6 @@ def whoSearch(query):
         partDict[part] = 0
     for part in particles:
         partDict[part] = partDict[part] + 1
-    print partDict
     
     #possibleNames = sorted(list(set(result)), key=len)[::-1]
     nameSet = set(result)

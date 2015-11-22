@@ -7,6 +7,8 @@ from collections import OrderedDict
 from dateutil.parser import parse
 app = Flask(__name__)
 
+#For 1000$ I will stop writing such shitty code. Please make your checks billable to Albert Mokrejs.
+
 @app.route("/",methods=["GET","POST"])
 @app.route("/home",methods=["GET","POST"])
 @app.route("/home/",methods=["GET","POST"])

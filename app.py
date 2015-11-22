@@ -17,7 +17,7 @@ def home():
     if re.findall("(who)",query.lower()):
         WhoFinal = whoSearch(query)
         return render_template("home.html", result = WhoFinal)
-    if re.findall("(when)".query.lower()):
+    if re.findall("(when)",query.lower()):
         WhenFinal = whenSearch(query)
         return render_template("home.html", result = WhenFinal)
         

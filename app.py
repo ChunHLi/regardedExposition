@@ -126,7 +126,10 @@ def whenSearch(query):
         z = ""
         for y in result[x]:
             z = z + y
-        result[x] = parse(re.sub("[ \-\/]"," ",z)).strftime('%d/%m/%Y')
+        try:
+            result[x] = parse(re.sub("[ \-\/]"," ",z)).strftime('%d/%m/%Y')
+        except Exception:
+            print "LOL THIS SUCKS"
         x = x+1
     print result
     

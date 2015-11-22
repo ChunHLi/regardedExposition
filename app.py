@@ -24,7 +24,7 @@ def home():
     return render_template("home.html")
 
 def whoSearch(query):
-    N = 10
+    N = 1
     stopList =  stopwords.words('english')
     x = 0
     
@@ -100,7 +100,7 @@ def whoSearch(query):
     return Result
     
 def whenSearch(query):
-    N = 10
+    N = 1
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:

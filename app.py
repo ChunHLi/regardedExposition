@@ -114,7 +114,7 @@ def whenSearch(query):
         rawlist.append(text)
         rawString = rawString + text + " "
     
-    whenPattern = "((oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* ((\d{1,2})\w{0,2})(,? (\d{2,4}))?)|((\d{1,4})[\/ \-](\d{1,4})[\/ \-](\d{1,4}))"
+    whenPattern = "((?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:(?:\d{1,2})\w{0,2})(?:,? (?:\d{2,4}))?)|(?:(?:\d{1,4})[\/ \-](?:\d{1,4})[\/ \-](?:\d{1,4}))"
     result = re.findall(whenPattern,rawString)
     x = 0
     while x < len(result):
@@ -126,8 +126,9 @@ def whenSearch(query):
         z = ""
         for y in result[x]:
             z = z + y
+            z = re.sub("[ \-\/]"," ",z)
         try:
-            result[x] = parse(re.sub("[ \-\/]"," ",z)).strftime('%d/%m/%Y')
+            result[x] = parse(z).strftime('%d/%m/%Y')
         except Exception:
             result[x] = z
             print "LOL THIS SUCKS"

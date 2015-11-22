@@ -145,7 +145,7 @@ def whenSearch(query):
     
     possibleDates = sorted(partDict.iteritems(), key=itemgetter(1), reverse=True)
     
-    return possibleDates[0][0][0:10]
+    return possibleDates[0]
 
 if __name__ == "__main__":
    app.debug = True

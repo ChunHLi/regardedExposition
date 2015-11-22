@@ -60,7 +60,8 @@
 		      <img src="../static/img/money.gif" class="ayylmao" id="money">
                     </li>
 		    <li>
-                        <a href="#Help">Help</a>
+                        <a href="#help" id="help">Help</a>
+			<img src="../static/img/thisIsFine.png" class="ayylmao" id="memes">
                     </li>
                     <li>
                         <a href="/about">About</a>
@@ -109,6 +110,20 @@
       setTimeout(function(){
       $("#money").fadeOut()
       }, 7500);
+      });
+    </script>
+    <script>
+      $.fn.center = function () {
+      this.css("position","absolute");
+      this.css("top",80);
+      this.css("left",-170);
+      return this;
+      }
+      $("#help").on("click", function(){
+      $("#memes").fadeIn(0).center()
+      setTimeout(function(){
+      $("#memes").fadeOut(0)
+      },100);
       });
     </script>
 </body>

@@ -18,7 +18,16 @@ No but seriously it's about regular expressions.
   - Add about page.
 
 * Middleware:
+  - Figure out what "Middleware" is.
+  - Hire someone to make Middleware.
 
 * Back End:
+  - Figure out how to determine a "right" date rather than just a correct date.
+  - Figure out how not to get multiple nouns rather than names.
+  - Make the code readable.
+  - Remove redundant code.
 
 ##Odd Bugs:
+  - Newspaper names are more popular than legit names.
+  - Timestamps on website comments ruin dates.
+  - Christmas is evidently only on 2014-12-23

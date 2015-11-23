@@ -10,13 +10,14 @@ class TestDemo(unitTest.TestCase):
   
   #define the test for whoQuery by comparing whether the string matches a possible answer.
   def testWho(self):
+    r = app.whoQuery("Who is the lead singer in Radiohead?")
   
   #define the test for whenQuery by comparing whether the string matches a possible answer.
   def testWhen(self):
-  
+    r = app.whenQuery("When is Obama's Birthday?")
   #define the test for whereQuery by comparing whether the string matches a possible answer.
   def testWhere(self):
-
+    r = app.whereQuery("?")
 if __name__ == "__main__":
 
   suite = unittest.Testloader().loadTestsFromTestCase(TestDemo)

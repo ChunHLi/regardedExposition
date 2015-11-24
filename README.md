@@ -41,4 +41,5 @@ No but seriously it's about regular expressions.
 ##Odd Bugs:
   - Newspaper names are more popular than legit names.
   - Timestamps on website comments ruin dates.
-  - Christmas is evidently only on 2014-12-23
+  - Christmas is evidently only on 2014-12-23.
+  - Trump did 9/11.

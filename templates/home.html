@@ -15,17 +15,15 @@
 		<input class="btn" type="submit" value="Quoogle Search">
 	</form>
 	<br><br>
-	<p>
         {% if Question %}
-        {{Question}}
-        {% endif %} " : "
+        <h1>{{Question}}</h1>
+        {% endif %} : 
         {% if Answer %}
-        {{Answer}}
+        <h2>{{Answer}}</h2>
         {% endif %}
         {% for answer in RunnersUp %}
-        {{answer}<br>
+        <br><h3>{{answer}}</h3>
         {% endfor %}
-        </p>
         
 </div>
 {% endblock %}

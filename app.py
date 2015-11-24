@@ -132,6 +132,8 @@ def whenSearch(query):
     finals = []
     for date in possibleDates:
         finals.append(date[0])
+    if len(finals) < 6:
+        return finals[0:len(finals)]
     return finals[0:6]
     
 def count(result):

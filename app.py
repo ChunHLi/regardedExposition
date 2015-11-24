@@ -79,8 +79,10 @@ def whoSearch(query):
     finals = []
     print possibleNames
     for name in possibleNames:
-        if mainPart in name[0]:
+        if mainPart in name[0] and not found:
             finals.append(name[0])
+    for name in possibleNames:
+        finals.append(name[0])
     return finals[0:6]
     
 def whenSearch(query):

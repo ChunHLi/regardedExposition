@@ -10,6 +10,17 @@ No but seriously it's about regular expressions.
 * *[Shawn Li](https://github.com/TyranitarShawn)*
 * *[Albert Mokrejs](https://github.com/AlbertMokrejs)*
 
+##How To Install:
+* Don't
+* Install Dateutil
+  - sudo pip install python-dateutil
+* Install NLTK Data
+  - import nltk
+  - nltk.download()
+  - (Use the interactive installer to install)
+* Install Soup
+  - pip install beautifulsoup4
+
 ##To-do List:
 * Front End:
   - Make 'Quoogle' Logo.

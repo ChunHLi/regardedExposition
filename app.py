@@ -134,14 +134,14 @@ def whenSearch(query):
         finals.append(date[0])
     return finals[0:6]
     
-    def count(result):
-        partSet = set(result)
-        partDict = {}
-        for part in partSet:
-            partDict[part] = 0
-        for part in result:
-            partDict[part] = partDict[part] + 1
-        return partDict
+def count(result):
+    partSet = set(result)
+    partDict = {}
+    for part in partSet:
+        partDict[part] = 0
+    for part in result:
+        partDict[part] = partDict[part] + 1
+    return partDict
 
 if __name__ == "__main__":
    app.debug = True

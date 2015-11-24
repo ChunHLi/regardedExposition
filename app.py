@@ -18,10 +18,10 @@ def home():
         query = request.form["query"]
     if re.findall("(who)",query.lower()):
         WhoFinal = whoSearch(query)
-        return render_template("home.html", result = WhoFinal)
+        return render_template("home.html", Answer = WhoFinal[0], Question = query, RunnersUp = WhoFinal[1:6])
     if re.findall("(when)",query.lower()):
         WhenFinal = whenSearch(query)
-        return render_template("home.html", result = WhenFinal)
+        return render_template("home.html", Answer = WhenFinal[0], Question = query, RunnersUp = WhenFinal[1:6])
         
     return render_template("home.html")
 
@@ -36,7 +36,6 @@ def whoSearch(query):
         except Exception:
             stopList[x] = stopList[x]
         x = x+1
-    print stopList
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:
@@ -68,20 +67,11 @@ def whoSearch(query):
     for sub in result:
         subParts = re.findall(subPattern,sub)
         particles = particles + subParts
-    partSet = set(particles)
-    partDict = {}
-    for part in partSet:
-        partDict[part] = 0
-    for part in particles:
-        partDict[part] = partDict[part] + 1
+    
+    partDict = count(particles)
     
     #possibleNames = sorted(list(set(result)), key=len)[::-1]
-    nameSet = set(result)
-    nameDict = {}
-    for name in nameSet:
-        nameDict[name] = 0
-    for name in result:
-        nameDict[name] = nameDict[name] + 1
+    nameDict = count(result)
     
     possibleNames = sorted(nameDict.iteritems(), key=itemgetter(1), reverse=True)
     
@@ -94,12 +84,12 @@ def whoSearch(query):
     mainPart = current
     found = False
     Result = ""
+    finals = []
     print possibleNames
     for name in possibleNames:
-        if not found and mainPart in name[0]:
-            found = True
-            Result = name[0]
-    return Result
+        if mainPart in name[0]:
+            finals.append(name[0])
+    return finals[0:6]
     
 def whenSearch(query):
     N = 1
@@ -134,20 +124,24 @@ def whenSearch(query):
             result[x] = parse(z).strftime('%d/%m/%Y')
         except Exception:
             result[x] = z
-            print "LOL THIS SUCKS"
         x = x+1
-    print result
     
-    partSet = set(result)
-    partDict = {}
-    for part in partSet:
-        partDict[part] = 0
-    for part in result:
-        partDict[part] = partDict[part] + 1
+    partDict = count(result)
     
     possibleDates = sorted(partDict.iteritems(), key=itemgetter(1), reverse=True)
+    finals = []
+    for date in possibleDates:
+        finals.append(date[0])
+    return finals[0:6]
     
-    return possibleDates[0][0]
+    def count(result):
+        partSet = set(result)
+        partDict = {}
+        for part in partSet:
+            partDict[part] = 0
+        for part in result:
+            partDict[part] = partDict[part] + 1
+        return partDict
 
 if __name__ == "__main__":
    app.debug = True

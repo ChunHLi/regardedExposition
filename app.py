@@ -29,7 +29,6 @@ def whoSearch(query):
     N = 1
     stopList =  stopwords.words('english')
     x = 0
-    
     while x < len(stopList):
         try:
             stopList[x] = stopList[x].encode("ascii","ignore")
@@ -53,7 +52,6 @@ def whoSearch(query):
     
     whoPattern = "([A-Z]+[a-z]+[\.][ ])?([A-Z]+[a-z]+[ ])([A-Z]+[a-z]+[ ])"
     result = re.findall(whoPattern,rawString)
-    #result = list(chain.from_iterable(result))
     x = 0
     while x < len(result):
         z = ""
@@ -61,20 +59,14 @@ def whoSearch(query):
             z = z + y
         result[x] = z
         x = x+1
-    
     particles = []
     subPattern = "[A-Z]+[a-z]+[\.]?"
     for sub in result:
         subParts = re.findall(subPattern,sub)
         particles = particles + subParts
-    
     partDict = count(particles)
-    
-    #possibleNames = sorted(list(set(result)), key=len)[::-1]
     nameDict = count(result)
-    
     possibleNames = sorted(nameDict.iteritems(), key=itemgetter(1), reverse=True)
-    
     counter = 0
     current = ""
     for key in partDict.keys():
@@ -105,7 +97,6 @@ def whenSearch(query):
         text = re.sub("[ \t\n]+"," ",raw)
         rawlist.append(text)
         rawString = rawString + text + " "
-    
     whenPattern = "((?:(?:\d){1,2} (?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:\d{4}))|(?:(?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:(?:\d{1,2})\w{0,2})(?:,? (?:\d{2,4}))?)|(?:(?:\d{1,4})[\/ \-](?:\d{1,4})[\/ \-](?:\d{1,4})))"
     result = re.findall(whenPattern,rawString)
     print result
@@ -125,9 +116,7 @@ def whenSearch(query):
         except Exception:
             result[x] = z
         x = x+1
-    
     partDict = count(result)
-    
     possibleDates = sorted(partDict.iteritems(), key=itemgetter(1), reverse=True)
     finals = []
     for date in possibleDates:

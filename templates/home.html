@@ -15,8 +15,14 @@
 		<input class="btn" type="submit" value="Quoogle Search">
 	</form>
 	<br><br>
-        {% if result %}
-        {{result}}
+	<p>
+        {% if Question %}
+        {{Question}}
+        {% endif %} " : "
+        {% if Answer %}
+        {{Answer}}
         {% endif %}
+        </p>
+        
 </div>
 {% endblock %}

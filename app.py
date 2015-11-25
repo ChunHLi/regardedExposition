@@ -13,6 +13,7 @@ app = Flask(__name__)
 @app.route("/home",methods=["GET","POST"])
 @app.route("/home/",methods=["GET","POST"])
 def home():
+    query = ""
     if request.method == "POST":
         query = request.form["query"]
     if re.findall("(who)",query.lower()):

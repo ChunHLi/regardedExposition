@@ -81,6 +81,7 @@ def whoSearch(query):
     for name in possibleNames:
         if mainPart in name[0] and not found:
             finals.append(name[0])
+            found = True
     for name in possibleNames:
         finals.append(name[0])
     return finals[0:6]

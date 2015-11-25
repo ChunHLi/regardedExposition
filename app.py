@@ -116,6 +116,7 @@ def whenSearch(query):
         result[x] =re.sub("[.]uly)", "7", result[x])
         result[x] =re.sub("[.]ugust)", "8", result[x])
         result[x] =re.sub("[.]eptember)", "9", result[x])
+        x = x + 1
     print result
     x = 0
     while x < len(result):

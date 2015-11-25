@@ -13,7 +13,6 @@ app = Flask(__name__)
 @app.route("/home",methods=["GET","POST"])
 @app.route("/home/",methods=["GET","POST"])
 def home():
-    query = "Who is the lead singer of radiohead?"
     if request.method == "POST":
         query = request.form["query"]
     if re.findall("(who)",query.lower()):
@@ -22,8 +21,7 @@ def home():
     if re.findall("(when)",query.lower()):
         WhenFinal = whenSearch(query)
         return render_template("home.html", Answer = WhenFinal[0], Question = query, RunnersUp = WhenFinal[1:6])
-        
-    return render_template("home.html")
+    return render_template("home.html", Answer = "Mike Zamansky", Question = "Who is the Best Stuy Teacher?", RunnersUp = [])
 
 def whoSearch(query):
     N = 1
@@ -92,6 +90,7 @@ def whenSearch(query):
     rlist = []
     for r in results:
         rlist.append(r)
+    print rlist
     rawlist = []
     rawString = ""
     for x in rlist:
@@ -102,20 +101,23 @@ def whenSearch(query):
         rawString = rawString + text + " "
     whenPattern = "((?:(?:\d){1,2} (?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:\d{4}))|(?:(?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:(?:\d{1,2})\w{0,2})(?:,? (?:\d{2,4}))?)|(?:(?:\d{1,4})[\/ \-](?:\d{1,4})[\/ \-](?:\d{1,4})))"
     result = re.findall(whenPattern,rawString)
+    print result
     x = 0
     while x < len(result):
         result[x] = list(OrderedDict.fromkeys(result[x]))
         x = x + 1
     x = 0
+    print result
     while x < len(result):
         z = ""
+        print result[x]
         for y in result[x]:
             z = z + y
             z = re.sub("[ \-\/]"," ",z)
+            print z + "???what????"
         try:
-            print result[x]
             result[x] = parse(z).strftime('%d/%m/%Y')
-            print result[x] + "FUCKER"
+            print result[x] + "?????"
         except Exception:
             result[x] = z
         x = x+1

@@ -104,15 +104,18 @@ def whenSearch(query):
     result = re.findall(whenPattern,rawString)
     x = 0
     while x < len(result)
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
-        re.sub("october|October)", "10", result[x])
+        result[x] = re.sub("october|October)", "10", result[x])
+        result[x] =re.sub("november|November)", "11", result[x])
+        result[x] =re.sub("december|December)", "12", result[x])
+        result[x] =re.sub("january|January)", "1", result[x])
+        result[x] =re.sub("february|February)", "2", result[x])
+        result[x] =re.sub("march|March)", "3", result[x])
+        result[x] =re.sub("april|April)", "4", result[x])
+        result[x] =re.sub("may|May)", "5", result[x])
+        result[x] =re.sub("[.]une)", "6", result[x])
+        result[x] =re.sub("[.]une)", "6", result[x])
+        result[x] =re.sub("[.]une)", "6", result[x])
+        result[x] =re.sub("[.]une)", "6", result[x])
     print result
     x = 0
     while x < len(result):

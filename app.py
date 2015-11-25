@@ -25,7 +25,7 @@ def home():
     return render_template("home.html", Answer = "Mike Zamansky", Question = "Who is the Best Stuy Teacher?", RunnersUp = [])
 
 def whoSearch(query):
-    N = 1
+    N = 10
     stopList =  stopwords.words('english')
     x = 0
     while x < len(stopList):
@@ -86,7 +86,7 @@ def whoSearch(query):
     return finals[0:6]
     
 def whenSearch(query):
-    N = 1
+    N = 10
     results = google.search(query,num=N,start=0,stop=N)
     rlist = []
     for r in results:

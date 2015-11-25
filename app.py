@@ -102,20 +102,20 @@ def whenSearch(query):
         rawString = rawString + text + " "
     whenPattern = "((?:(?:\d){1,2} (?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:\d{4}))|(?:(?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:(?:\d{1,2})\w{0,2})(?:,? (?:\d{2,4}))?)|(?:(?:\d{1,4})[\/ \-](?:\d{1,4})[\/ \-](?:\d{1,4})))"
     result = re.findall(whenPattern,rawString)
-    print result
     x = 0
     while x < len(result):
         result[x] = list(OrderedDict.fromkeys(result[x]))
         x = x + 1
     x = 0
-    print result
     while x < len(result):
         z = ""
         for y in result[x]:
             z = z + y
             z = re.sub("[ \-\/]"," ",z)
         try:
+            print result[x]
             result[x] = parse(z).strftime('%d/%m/%Y')
+            print result[x] + "FUCKER"
         except Exception:
             result[x] = z
         x = x+1

@@ -113,9 +113,9 @@ def whenSearch(query):
         result[x] =re.sub("april|April)", "4", result[x])
         result[x] =re.sub("may|May)", "5", result[x])
         result[x] =re.sub("[.]une)", "6", result[x])
-        result[x] =re.sub("[.]une)", "6", result[x])
-        result[x] =re.sub("[.]une)", "6", result[x])
-        result[x] =re.sub("[.]une)", "6", result[x])
+        result[x] =re.sub("[.]uly)", "7", result[x])
+        result[x] =re.sub("[.]ugust)", "8", result[x])
+        result[x] =re.sub("[.]eptember)", "9", result[x])
     print result
     x = 0
     while x < len(result):

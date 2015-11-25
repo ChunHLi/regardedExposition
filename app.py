@@ -102,6 +102,17 @@ def whenSearch(query):
         rawString = rawString + text + " "
     whenPattern = "((?:(?:\d){1,2} (?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:\d{4}))|(?:(?:oct|nov|dec|jan|feb|mar|apr|may|jun|jul|aug|sep)\w* (?:(?:\d{1,2}))(?:,? (?:\d{2,4}))?)|(?:(?:\d{1,4})[\/ \-](?:\d{1,2})[\/ \-](?:\d{4})))"
     result = re.findall(whenPattern,rawString)
+    x = 0
+    while x < len(result)
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
+        re.sub("october|October)", "10", result[x])
     print result
     x = 0
     while x < len(result):

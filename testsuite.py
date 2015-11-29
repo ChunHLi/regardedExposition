@@ -1,8 +1,8 @@
 import unittest
 import app
 
-class TestDemo(unitTest.TestCase):
-  def setup(self):
+class TestDemo(unittest.TestCase):
+  def setUp(self):
     print "Before a test"
   
   def tearDown(self):
@@ -10,17 +10,17 @@ class TestDemo(unitTest.TestCase):
   
   #define the test for whoQuery by comparing whether the string matches a possible answer.
   def testWho(self):
-    r = app.whoQuery("Who is the lead singer in Radiohead?")
-  
+    r = app.whoSearch("Who is the lead singer in Radiohead?")
+    self.assertEqual(r[0], "Thom Yorke")
+    
   #define the test for whenQuery by comparing whether the string matches a possible answer.
   def testWhen(self):
-    r = app.whenQuery("When is Obama's Birthday?")
-  #define the test for whereQuery by comparing whether the string matches a possible answer.
-  def testWhere(self):
-    r = app.whereQuery("?")
+    r = app.whenSearch("When is Christmas?")
+    self.assertEqual(r[0], "25/12/2014")
+    
 if __name__ == "__main__":
 
-  suite = unittest.Testloader().loadTestsFromTestCase(TestDemo)
+  suite = unittest.TestLoader().loadTestsFromTestCase(TestDemo)
   
   # 0 (quiet): you just get the total numbers of tests executed and the global result
   # 1 (default): you get the same plus a dot for every successful test or a F for every failure

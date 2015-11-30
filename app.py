@@ -7,8 +7,16 @@ from collections import OrderedDict
 from dateutil.parser import parse
 app = Flask(__name__)
 
-#For 1000$ I will stop writing such shitty code. Please make your checks billable to Albert Mokrejs.
 
+#/***
+#Home
+#
+#Takes a query given via the website's form field and uses it to generate a Who or When query. When there is no input
+#a hardcoded query is used.
+#
+#Works as intended.
+#
+#***/
 @app.route("/",methods=["GET","POST"])
 @app.route("/home",methods=["GET","POST"])
 @app.route("/home/",methods=["GET","POST"])
@@ -24,8 +32,21 @@ def home():
         return render_template("home.html", Answer = WhenFinal[0], Question = query, RunnersUp = WhenFinal[1:6])
     return render_template("home.html", Answer = "Mike Zamansky", Question = "Who is the Best Stuy Teacher?", RunnersUp = [])
 
+#/***
+#whoSearch
+#
+#Params: Query: A string to be google'd and then analyzed to find a name as a response.
+#
+#This method uses the query to find 10 results and then uses a list of stopwords to remove invalid nouns. The text is then
+#searched for names consisting of two or three parts. These names are then sorted based on how common they are, and their
+#parts are indexed the same way. The most frequent name containing the most frequence part is considered the corrent name.
+#The correct name is used to render the webpage.
+#
+#Works as intended in the sense that it finds names. Sadly, google cannot gaurentee the relevancy of names. Occastionally,
+#a city or company name will also be returned which is an issue.
+#
+#***/
 def whoSearch(query):
-    N = 10
     stopList =  stopwords.words('english')
     x = 0
     while x < len(stopList):
@@ -34,7 +55,7 @@ def whoSearch(query):
         except Exception:
             stopList[x] = stopList[x]
         x = x+1
-    results = google.search(query,num=N,start=0,stop=N)
+    results = google.search(query,num=10,start=0,stop=10)
     rlist = []
     for r in results:
         rlist.append(r)
@@ -84,10 +105,23 @@ def whoSearch(query):
     for name in possibleNames:
         finals.append(name[0])
     return finals[0:6]
-    
+
+#/***
+#whenSearch
+#
+#Params: Query: A string to be google'd and then analyzed to find a date as a response.
+#
+#This method uses the query to find 10 results from which it searches for dates. It then attempts to convert them to a
+#consistent format and then sorts those dates based on frequency. The most common date is returned as the answer and is 
+#used to render the webpage.
+#
+#Essentially broken. It'll find some dates but because not all dates are formatted the same way, the format conversion
+#will often fail in weird ways. This makes the results rather odd and unpredictable. Making it work would probably 
+#require a full, elaborate, rewrite. My bad.
+#
+#***/
 def whenSearch(query):
-    N = 10
-    results = google.search(query,num=N,start=0,stop=N)
+    results = google.search(query,num=10,start=0,stop=10)
     rlist = []
     for r in results:
         rlist.append(r)
@@ -130,10 +164,8 @@ def whenSearch(query):
         for y in result[x]:
             z = z + y
             z = re.sub("[ \-\/]"," ",z)
-            print z + "???what????"
         try:
             result[x] = parse(z).strftime('%d/%m/%Y')
-            print result[x] + "?????"
         except Exception:
             result[x] = z
         x = x+1
@@ -146,6 +178,17 @@ def whenSearch(query):
         return finals[0:len(finals)]
     return finals[0:6]
     
+    
+#/***
+#count
+#
+#Params: Result: A list of items.
+#
+#Creates a dictionary containing the ammount of occurences of each item in result. 
+#
+#Works as intended.
+#
+#***/
 def count(result):
     partSet = set(result)
     partDict = {}
